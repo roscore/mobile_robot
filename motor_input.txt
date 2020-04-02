@@ -1,0 +1,14 @@
+pwm_range = 512
+pwm_frequency = 40000
+pid_limit = 50
+motor_steering_limit = 0.7
+theta_rpm = 40
+distance_default_rpm = 30
+distance_modify_rpm = 30
+ss_default_rpm = 130
+ss_modify_rpm = 95
+ss_cturn_ratio = 0.5
+ss_pturn_ratio = 0.15
+control_cycle = 10000
+sync_left = 1
+sync_right = 1
