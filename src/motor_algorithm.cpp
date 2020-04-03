@@ -25,6 +25,7 @@ int Theta_Distance_Flag;
 ///////////Text_Input
 int PWM_range;
 int PWM_frequency;
+int PWM_limit;
 float PID_limit;
 float Motor_Steering_limit;
 float Theta_RPM;
@@ -37,6 +38,48 @@ float SS_Pturn_Ratio;
 float Control_Cycle;
 float Sync_Left;
 float Sync_Right;
+
+int current_PWM;
+bool current_Direction;
+int acceleration;
+
+double pwm_value_motor;
+double result_rpm;
+
+bool direction;
+bool check_position_control;
+bool onoff;
+
+bool joy_flag;
+
+int encoder_pulse1;
+int encoder_pulse2;
+
+int encoder_pulse_position1;
+int encoder_pulse_position2;
+
+int position_max_rpm;
+bool check_position;
+
+double acceleration_value;
+
+int encoder_pulse_per_rotation_;
+int control_freqency_;
+int channel_;
+
+double p_gain_position_;
+double p_gain_speed_;
+
+double speed_static_encoder_pulse_;
+double speed_error_;
+double speed_control_;
+
+double position_static_encoder_pulse_;
+double position_error_;
+double position_control_;
+
+void Interrupt_Setting(void);
+
 /////////////////////
 void Text_Input(void)
 {
@@ -230,7 +273,7 @@ double position_controller(int desired_angle, int max_rpm)
 
 }
 
-void Initialize()
+void Initialize(void)
 {
   PWM_limit = 150;
   EncoderCounter1 = 0;
@@ -304,7 +347,7 @@ void Interrupt2B_Rising(int pi, unsigned user_gpio, unsigned level, uint32_t tic
   EncoderCounter2 ++;
 }
 
-void Interrupt_Setting()
+void Interrupt_Setting(void)
 {
 
     callback(pinum, motor_EN1A, EITHER_EDGE, Interrupt1A_Falling);

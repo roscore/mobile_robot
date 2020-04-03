@@ -38,9 +38,20 @@ void PWM_Default(void);
 extern volatile int EncoderCounter1;
 extern volatile int EncoderCounter2;
 
-void Interrupt1(int pi, unsigned user_gpio, unsigned level, uint32_t tick);
-void Interrupt2(int pi, unsigned user_gpio, unsigned level, uint32_t tick);
-
 extern bool joy_flag;
+
+extern void left_motor_joy_callback(const ssoni_mobile_msgs::motor_cmd::ConstPtr& msg);
+extern void right_motor_joy_callback(const ssoni_mobile_msgs::motor_cmd::ConstPtr& msg);
+extern void left_motor_operator_callback(const ssoni_mobile_msgs::motor_cmd::ConstPtr& msg);
+extern void right_motor_operator_callback(const ssoni_mobile_msgs::motor_cmd::ConstPtr& msg);
+extern void mode_select_callback(const std_msgs::Bool::ConstPtr& msg);
+
+extern int Limit_Function(int pwm);
+extern void Interrupt_Setiing(void);
+extern void PWM_Default(void);
+extern void Initialize();
+
+extern void Motor_Controller(int motor_num, int direction, int pwm);
+
 
 #endif // MOTOR_ALGORITHM_H
